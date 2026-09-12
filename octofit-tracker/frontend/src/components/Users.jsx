@@ -11,13 +11,16 @@ const columns = [
 ];
 
 export default function Users() {
+  const endpoint = import.meta.env.VITE_CODESPACE_NAME
+    ? `https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/users/`
+    : 'http://localhost:8000/api/users/';
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
   useEffect(() => {
-    fetchCollection('users').then(setUsers).catch((reason) => setError(reason.message)).finally(() => setLoading(false));
-  }, []);
+    fetchCollection(endpoint).then(setUsers).catch((reason) => setError(reason.message)).finally(() => setLoading(false));
+  }, [endpoint]);
 
   return <DataPage eyebrow="Community" title="Athletes" description="Everyone making progress with OctoFit."
     rows={users} columns={columns} loading={loading} error={error} />;

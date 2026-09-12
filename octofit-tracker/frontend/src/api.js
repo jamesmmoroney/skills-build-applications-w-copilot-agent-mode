@@ -12,8 +12,11 @@ function recordsFrom(payload) {
   return [];
 }
 
-export async function fetchCollection(resource) {
-  const response = await fetch(`${apiBaseUrl}/api/${resource}/`);
+export async function fetchCollection(resourceOrUrl) {
+  const endpoint = resourceOrUrl.startsWith('http')
+    ? resourceOrUrl
+    : `${apiBaseUrl}/api/${resourceOrUrl}/`;
+  const response = await fetch(endpoint);
   if (!response.ok) {
     throw new Error(`Unable to load ${resource} (${response.status})`);
   }
