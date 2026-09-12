@@ -1,4 +1,16 @@
-# React + TypeScript + Vite
+# OctoFit Tracker frontend
+
+The Vite app reads `VITE_CODESPACE_NAME` from the environment to reach the
+backend at `https://<name>-8000.app.github.dev`. Create
+`octofit-tracker/frontend/.env.local` with your Codespaces name before running
+the frontend:
+
+```bash
+VITE_CODESPACE_NAME=your-codespace-name
+```
+
+When the variable is not defined, the app safely falls back to
+`http://localhost:8000`.
 
 This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
 
